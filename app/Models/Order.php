@@ -2,14 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Orders extends Model
 {
-    /** @use HasFactory<\Database\Factories\OrderFactory> */
-    use HasFactory;
-    public function client(){
-        return $this->hasMany(Client::class);
- }
+    protected $fillable = [
+        'clients_id',
+        'order_date',
+        'total_amount',
+        'status',
+        'payment_method',
+        'shipping_address'
+    ];
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class, 'clients_id');
+    }
 }

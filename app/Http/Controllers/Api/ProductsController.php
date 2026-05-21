@@ -27,6 +27,7 @@ class ProductsController extends Controller
     {
         $products = Product::create($request->validated());
         return new ProductsResource($products);
+        
     }
 
     /**
