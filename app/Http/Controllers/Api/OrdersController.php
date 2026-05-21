@@ -3,29 +3,32 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Orders;
-use App\Http\Resources\OrdersResource;
-use App\Http\Requests\StoreOrderRequest;
+use App\Models\Order;
+use App\Http\Resources\OrdersResource; // Importado originalmente con "s"
+use App\Http\Requests\StoreOrdersRequest;
 use App\Http\Requests\UpdateOrderRequest;
 
 class OrdersController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('client')->get();
-        return OrderResource::collection($orders);
+        $orders = Order::with('clients')->get();
+        // Cambiado a OrdersResource (con s)
+        return OrdersResource::collection($orders);
     }
 
-    public function store(StoreOrderRequest $request)
+    public function store(StoreOrdersRequest $request)
     {
         $order = Order::create($request->validated());
-        return new OrderResource($order);
+        // Cambiado a OrdersResource (con s)
+        return new OrdersResource($order);
     }
 
     public function show(string $id)
     {
-        $order = Order::with('client')->findOrFail($id);
-        return new OrderResource($order);
+        $order = Order::with('clients')->findOrFail($id);
+        // Cambiado a OrdersResource (con s)
+        return new OrdersResource($order);
     }
 
     public function update(UpdateOrderRequest $request, string $id)
@@ -33,7 +36,8 @@ class OrdersController extends Controller
         $order = Order::findOrFail($id);
         $order->update($request->validated());
 
-        return new OrderResource($order);
+        // Cambiado a OrdersResource (con s)
+        return new OrdersResource($order);
     }
 
     public function destroy(string $id)

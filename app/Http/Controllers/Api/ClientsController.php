@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
-use App\Http\Resources\ClientResource;
-use App\Http\Requests\StoreClientRequest;
-use App\Http\Requests\UpdateClientRequest;
+use App\Http\Resources\ClientResource; 
+use App\Http\Requests\StoreClientsRequest as StoreClientRequest; 
+use App\Http\Requests\UpdateClientsRequest as UpdateClientRequest; 
 
 class ClientsController extends Controller
 {
     public function index()
     {
+        // Ahora sí encuentra la clase ClientResource
         return ClientResource::collection(Client::all());
     }
 
